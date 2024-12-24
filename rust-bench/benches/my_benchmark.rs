@@ -1,16 +1,28 @@
-use criterion::{criterion_group, criterion_main, Criterion};
+use criterion::{black_box, criterion_group, criterion_main, Criterion};
 
-fn fibonacci(n: u64) -> u64 {
-    if n <= 1 {
-        n
-    } else {
-        fibonacci(n - 1) + fibonacci(n - 2)
-    }
+extern "C" {
+    fn square(x: i32) -> i32;
 }
 
-fn bench_fibonacci(c: &mut Criterion) {
-    c.bench_function("fibonacci 20", |b| b.iter(|| fibonacci(20)));
+fn _square(x: i32) -> i32 {
+    x * x
 }
 
-criterion_group!(benches, bench_fibonacci);
+fn benchmark_ffi_square(c: &mut Criterion) {
+    c.bench_function("ffi_square", |b| {
+        b.iter(|| {
+            unsafe { black_box(square(3)) };
+        })
+    });
+}
+
+fn benchmark_rust_square(c: &mut Criterion) {
+    c.bench_function("rust_square", |b| {
+        b.iter(|| {
+            black_box(_square(3));
+        })
+    });
+}
+
+criterion_group!(benches, benchmark_ffi_square, benchmark_rust_square);
 criterion_main!(benches);

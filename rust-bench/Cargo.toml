@@ -11,3 +11,6 @@ harness = false
 
 [dev-dependencies]
 criterion = { version = "0.5", features = ["html_reports"] }
+
+[build-dependencies]
+cc = "1.0"
