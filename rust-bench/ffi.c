@@ -1,6 +1,25 @@
 #include <stdio.h>
+#include <stdlib.h>
 
-// C 函数，接收一个整数并返回其平方
-int square(int x) {
-    return x * x;
+struct MyStruct {
+    int a;
+    int b;
+};
+
+void* malloc_and_access(int a, int b) {
+    struct MyStruct* ptr = (struct MyStruct*)malloc(sizeof(struct MyStruct) + 1);
+
+    if (ptr == NULL) {
+        printf("malloc fail\n");
+        return NULL;
+    }
+
+    ptr->a = a;
+    ptr->b = b;
+
+    return ptr;
+}
+
+void free_memory(void* ptr) {
+    free(ptr);
 }
