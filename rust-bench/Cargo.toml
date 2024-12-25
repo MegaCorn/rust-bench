@@ -4,7 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [[bench]]
-name = "my_benchmark"
+name = "jsi_wrapper"
+harness = false
+
+[[bench]]
+name = "extend_unsafe"
+harness = false
+
+[[bench]]
+name = "extend_safe"
 harness = false
 
 [dependencies]
