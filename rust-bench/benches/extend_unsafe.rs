@@ -4,7 +4,6 @@ use std::mem;
 struct Node {
     count: i32,
 }
-
 impl Node {
     fn new() -> Self {
         Node {
@@ -21,7 +20,6 @@ impl Node {
 struct Element {
     base: Node,
 }
-
 impl Element {
     fn new() -> Self {
         Element {
@@ -33,7 +31,6 @@ impl Element {
 struct DiveElement {
     base: Element,
 }
-
 impl DiveElement {
     fn new() -> Self {
         DiveElement {

@@ -3,10 +3,10 @@
 
 struct MyStruct {
     int a;
-    int b;
+    float b;
 };
 
-void* malloc_and_access(int a, int b) {
+void* malloc_and_access(int a, float b) {
     struct MyStruct* ptr = (struct MyStruct*)malloc(sizeof(struct MyStruct) + 1);
 
     if (ptr == NULL) {

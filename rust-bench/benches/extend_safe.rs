@@ -51,7 +51,7 @@ fn vtable() {
 
     for _i in 0..10000 {
         let count = dive_element.get_count();
-    black_box(count);
+        black_box(count);
     }
 }
 

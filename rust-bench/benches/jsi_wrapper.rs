@@ -1,20 +1,20 @@
 use criterion::{black_box, criterion_group, criterion_main, Criterion};
-use libc::c_int;
+use libc::{c_int, c_float};
 
 #[repr(C)]
 pub struct MyClass {
     pub x: c_int,
-    pub y: c_int,
+    pub y: c_float,
 }
 
 extern "C" {
-    fn malloc_and_access(a: c_int, b: c_int) -> *mut MyClass;
+    fn malloc_and_access(a: c_int, b: c_float) -> *mut MyClass;
     fn free_memory(ptr: *mut MyClass);
 }
 
 fn direct() {
     unsafe {
-        let ptr = malloc_and_access(1,2);
+        let ptr = malloc_and_access(1,2.2);
 
         if ptr.is_null() {
             println!("malloc fail");
@@ -43,7 +43,7 @@ impl Wrap {
         }
     }
 
-    pub fn gety(&self) -> i32 {
+    pub fn gety(&self) -> f32 {
         unsafe {
             (*(self.ptr)).y
         }
@@ -52,7 +52,7 @@ impl Wrap {
 
 fn wrap() {
     unsafe {
-        let ptr = malloc_and_access(1,2);
+        let ptr = malloc_and_access(1,2.2);
 
         if ptr.is_null() {
             println!("malloc fail");
