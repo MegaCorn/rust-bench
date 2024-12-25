@@ -1,7 +1,9 @@
 本项目用于评估jsi以及安全封装的性能开销
 
 extend_safe使用trait实现继承以及父函数调用
+
 extend_unsafe使用裸指针实现继承以及父函数调用
+
 jsi_wrapper对比了直接调用ffi，以及通过wrapper调用ffi的性能
 
-cargo bench
+运行：cargo bench
