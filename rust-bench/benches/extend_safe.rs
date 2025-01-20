@@ -56,7 +56,7 @@ fn vtable() {
 }
 
 fn benchmark_extend_vtable(c: &mut Criterion) {
-    c.bench_function("extend_vtable", |b| {
+    c.bench_function("使用虚函数表实现继承", |b| {
         b.iter(|| {
             vtable();
         })

@@ -53,7 +53,7 @@ fn pointer() {
 }
 
 fn benchmark_extend_pointer(c: &mut Criterion) {
-    c.bench_function("extend_pointer", |b| {
+    c.bench_function("使用裸指针实现继承", |b| {
         b.iter(|| {
             pointer();
         })

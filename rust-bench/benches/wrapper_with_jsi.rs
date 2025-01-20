@@ -58,7 +58,7 @@ fn wrap() {
 }
 
 fn benchmark_ffi_direct(c: &mut Criterion) {
-    c.bench_function("ffi_direct", |b| {
+    c.bench_function("发生了jsi的直接调用", |b| {
         b.iter(|| {
             direct();
         })
@@ -66,7 +66,7 @@ fn benchmark_ffi_direct(c: &mut Criterion) {
 }
 
 fn benchmark_ffi_wrap(c: &mut Criterion) {
-    c.bench_function("ffi_wrap", |b| {
+    c.bench_function("发生了jsi的封装调用", |b| {
         b.iter(|| {
             wrap();
         })

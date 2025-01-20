@@ -4,7 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [[bench]]
-name = "jsi_wrapper"
+name = "wrapper_with_jsi"
+harness = false
+
+[[bench]]
+name = "wrapper_without_jsi"
 harness = false
 
 [[bench]]
