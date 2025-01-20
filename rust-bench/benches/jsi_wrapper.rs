@@ -14,21 +14,14 @@ extern "C" {
 
 fn direct() {
     unsafe {
-        let ptr = malloc_and_access(1,2.2);
-
-        if ptr.is_null() {
-            println!("malloc fail");
-            return;
-        }
-
         for _i in 0..10000 {
+            let ptr = malloc_and_access(1,2.2);
             let x = (*ptr).x;
             let y = (*ptr).y;
             black_box(x);
             black_box(y);
+            free_memory(ptr);
         }
-
-        free_memory(ptr);
     }
 }
 
@@ -52,23 +45,15 @@ impl Wrap {
 
 fn wrap() {
     unsafe {
-        let ptr = malloc_and_access(1,2.2);
-
-        if ptr.is_null() {
-            println!("malloc fail");
-            return;
-        }
-
-        let wrap = Box::new(Wrap{ptr});
-
         for _i in 0..10000 {
+            let ptr = malloc_and_access(1,2.2);
+            let wrap = Box::new(Wrap{ptr});
             let x = wrap.getx();
             let y = wrap.gety();
             black_box(x);
             black_box(y);
+            free_memory(ptr);
         }
-
-        free_memory(ptr);
     }
 }
 
