@@ -48,7 +48,7 @@ impl Wrap {
 fn wrap() {
     unsafe {
         let ptr = malloc_and_access(1,2.2);
-        let wrap = Box::new(Wrap{ptr});
+        let wrap = Wrap{ptr};
 
         for _i in 0..10000 {
             let x = wrap.getx();
