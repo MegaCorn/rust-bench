@@ -12,7 +12,7 @@ extern "C" {
     fn free_memory(ptr: *mut MyClass);
 }
 
-fn direct() {
+fn ffi_direct() {
     unsafe {
         for _i in 0..10000 {
             let ptr = malloc_and_access(1,2.2);
@@ -43,7 +43,7 @@ impl Wrap {
     }
 }
 
-fn wrap() {
+fn ffi_wrap() {
     unsafe {
         for _i in 0..10000 {
             let ptr = malloc_and_access(1,2.2);
@@ -58,17 +58,17 @@ fn wrap() {
 }
 
 fn benchmark_ffi_direct(c: &mut Criterion) {
-    c.bench_function("发生了jsi的直接调用", |b| {
+    c.bench_function("发生了ffi的直接调用", |b| {
         b.iter(|| {
-            direct();
+            ffi_direct();
         })
     });
 }
 
 fn benchmark_ffi_wrap(c: &mut Criterion) {
-    c.bench_function("发生了jsi的封装调用", |b| {
+    c.bench_function("发生了ffi的封装调用", |b| {
         b.iter(|| {
-            wrap();
+            ffi_wrap();
         })
     });
 }

@@ -4,11 +4,11 @@ version = "0.1.0"
 edition = "2021"
 
 [[bench]]
-name = "wrapper_with_jsi"
+name = "wrapper_ffi"
 harness = false
 
 [[bench]]
-name = "wrapper_without_jsi"
+name = "wrapper_rust"
 harness = false
 
 [[bench]]

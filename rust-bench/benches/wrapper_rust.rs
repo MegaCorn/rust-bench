@@ -12,7 +12,7 @@ extern "C" {
     fn free_memory(ptr: *mut MyClass);
 }
 
-fn direct() {
+fn rust_direct() {
     unsafe {
         let ptr = malloc_and_access(1,2.2);
 
@@ -45,7 +45,7 @@ impl Wrap {
     }
 }
 
-fn wrap() {
+fn rust_wrap() {
     unsafe {
         let ptr = malloc_and_access(1,2.2);
         let wrap = Wrap{ptr};
@@ -61,21 +61,21 @@ fn wrap() {
     }
 }
 
-fn benchmark_ffi_direct(c: &mut Criterion) {
+fn benchmark_rust_direct(c: &mut Criterion) {
     c.bench_function("纯rust语言的直接调用", |b| {
         b.iter(|| {
-            direct();
+            rust_direct();
         })
     });
 }
 
-fn benchmark_ffi_wrap(c: &mut Criterion) {
+fn benchmark_rust_wrap(c: &mut Criterion) {
     c.bench_function("纯rust语言的封装调用", |b| {
         b.iter(|| {
-            wrap();
+            rust_wrap();
         })
     });
 }
 
-criterion_group!(benches, benchmark_ffi_direct, benchmark_ffi_wrap);
+criterion_group!(benches, benchmark_rust_direct, benchmark_rust_wrap);
 criterion_main!(benches);
